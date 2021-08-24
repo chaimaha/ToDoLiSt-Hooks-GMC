@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState } from "react";
+import Todo from "./assets/Todo";
 
 function App() {
+  const [Data, setData] = useState([
+    { name: "task1", id: Math.random() },
+    { name: "task2", id: Math.random() },
+    { name: "task2", id: Math.random() },
+  ]);
+  const adding = (text) =>
+    setData(Data.concat({ name: text, id: Math.random() }));
+  const delate = (id) => setData(Data.filter((ele) => ele.id !== id));
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Todo Data={Data} Add={adding} Delate={delate}></Todo>
     </div>
   );
 }
